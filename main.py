@@ -5,6 +5,7 @@ import sys
 import magic
 import pandas as pd
 import math
+from collections import Counter
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -38,11 +39,13 @@ def calculate_entropy(file_path):
         if not data:
             return 0.0
 
+        # One tally pass. Counting byte by byte with data.count() instead
+        # rescans the whole buffer once per possible value, 256 passes over
+        # the same bytes to get these same probabilities.
         entropy = 0
-        for x in range(256):
-            p_x = float(data.count(bytes([x])))/len(data)
-            if p_x > 0:
-                entropy += - p_x*math.log2(p_x)
+        for count in Counter(data).values():
+            p_x = count / len(data)
+            entropy += - p_x * math.log2(p_x)
         return entropy
     except FileNotFoundError:
         logging.error(f"File not found: {file_path}")
@@ -124,10 +127,10 @@ def main():
 
     analysis_result = analyze_file(file_path)
     if analysis_result:
-      generate_report([analysis_result], args.output)
+        generate_report([analysis_result], args.output)
     else:
-      logging.error(f"Analysis failed for {file_path}")
-      sys.exit(1)
+        logging.error(f"Analysis failed for {file_path}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -135,33 +138,3 @@ if __name__ == "__main__":
     Entry point of the script.
     """
     main()
-
-
-"""
-Usage Examples:
-
-1. Analyze a file and generate a report:
-   python main.py suspicious_file.exe
-
-2. Analyze a file and specify a custom output file:
-   python main.py suspicious_file.exe -o my_report.csv
-
-3. Analyze a file with verbose logging:
-   python main.py suspicious_file.exe -v
-
-Offensive Tool Considerations:
-
-- This tool can be used to identify file masquerading techniques.  For example, a file with a .txt extension might actually be a PE executable.
-- The entropy calculation can help identify packed or obfuscated files, which are often used by malware. A high entropy value is a red flag.
-- The tool can be integrated into a larger malware analysis pipeline.
-- The results can be used to create signatures for malware detection.
-- Ensure the tool is run in a sandboxed environment to avoid accidental execution of malicious files.
-- Be cautious when handling untrusted files, as they may contain vulnerabilities or exploits.
-
-Security Best Practices:
-- Sanitize file paths to prevent path traversal vulnerabilities.
-- Implement input validation to prevent malicious input from crashing the tool or causing unexpected behavior.
-- Use secure file handling practices to prevent information leakage or unauthorized access.
-- Keep the tool and its dependencies up to date to patch security vulnerabilities.
-
-"""
