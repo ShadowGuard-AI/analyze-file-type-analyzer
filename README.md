@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # analyze-file-type-analyzer
 Determines the true file type of a given file regardless of its extension by analyzing its magic bytes (file signature) and entropy. Helps detect file masquerading or obfuscation techniques often used by malware. - Focused on Data analysis and reporting
 
