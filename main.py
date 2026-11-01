@@ -34,6 +34,9 @@ def calculate_entropy(file_path):
         float: The calculated entropy value.  Returns -1 on error.
     """
     try:
+        # The whole file is read into memory here. That is the simple
+        # version, and it is the reason a multi gigabyte file is a bad
+        # input for this tool even though the tally itself is cheap.
         with open(file_path, "rb") as f:
             data = f.read()
         if not data:
@@ -72,6 +75,12 @@ def analyze_file(file_path):
         file_size = os.path.getsize(file_path)
 
         #Detect file type using libmagic
+        # A libmagic failure degrades to an Unknown string and the run
+        # continues to entropy, while an entropy failure below aborts
+        # the whole analysis. That split is deliberate: a report with a
+        # missing type still carries a usable entropy number, but a
+        # report with the sentinel in the entropy column would look
+        # like data.
         try:
             file_type = magic.from_file(file_path)
         except Exception as e:
@@ -106,6 +115,11 @@ def generate_report(analysis_results, output_file):
         df.to_csv(output_file, index=False)
         logging.info(f"Report generated successfully: {output_file}")
     except Exception as e:
+        # This failure is only logged, and main has already moved on,
+        # so the run exits 0 with no report written. Also note the
+        # report is not optional: the output argument has a default
+        # file name, so every successful run writes a CSV whether the
+        # caller asked for one or not, and nothing is printed instead.
         logging.error(f"Error generating report: {e}")
 
 def main():
