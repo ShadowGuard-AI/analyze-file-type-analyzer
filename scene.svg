@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="The run in three bands: the horizon strip brightens and a distant hull rises and falls, buoys pass and dip through the middle channel, and on the foredeck the lantern sways in its gimbal while the bell swings and pauses">
+<rect x="0" y="0" width="1200" height="300" fill="#33424f"/>
+<rect x="0" y="34" width="1200" height="26" fill="#7fb69a"><animate attributeName="opacity" values="0.45;0.95;0.95" keyTimes="0;0.55;1" dur="36s" repeatCount="indefinite"/></rect>
+<g><animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0; 0,2; 0,0" dur="13s" repeatCount="indefinite"/><path d="M880,74 L1090,74 L1072,92 L898,92 Z" fill="#232e38"/><rect x="946" y="58" width="80" height="16" fill="#2a3742"/></g>
+<rect x="0" y="96" width="1200" height="204" fill="#2a3742"/>
+<g stroke="#f2f0e9" stroke-width="3" opacity="0.5"><line x1="140" y1="238" x2="520" y2="252"/><line x1="700" y1="238" x2="1080" y2="252"/><line x1="220" y1="262" x2="480" y2="270"/><line x1="740" y1="262" x2="1000" y2="270"/></g>
+<g fill="#f2f0e9"><circle cx="600" cy="226" r="5"><animate attributeName="r" values="5;8;5" dur="2.6s" repeatCount="indefinite"/></circle><circle cx="628" cy="232" r="4"><animate attributeName="r" values="4;6;4" dur="2.2s" begin="0.5s" repeatCount="indefinite"/></circle><circle cx="574" cy="233" r="3.4"><animate attributeName="r" values="3.4;5;3.4" dur="3s" begin="1s" repeatCount="indefinite"/></circle></g>
+<g><animateTransform attributeName="transform" type="translate" values="1180,0; -160,0" dur="30s" repeatCount="indefinite"/>
+<g><animateTransform attributeName="transform" type="translate" values="0,0; 0,5; 0,0" dur="4s" repeatCount="indefinite"/><path d="M0,150 L34,150 L27,178 L7,178 Z" fill="#e06a1f"/><circle cx="17" cy="140" r="5" fill="#f5e08c"/></g>
+<g transform="translate(330,14)"><animateTransform attributeName="transform" type="translate" values="0,0; 0,4; 0,0" dur="4.6s" begin="1s" repeatCount="indefinite"/><path d="M0,150 L30,150 L24,172 L6,172 Z" fill="#46545f"/><circle cx="15" cy="141" r="4" fill="#f5e08c"/></g>
+<g transform="translate(620,24)"><animateTransform attributeName="transform" type="translate" values="0,0; 0,4; 0,0" dur="5.2s" begin="2s" repeatCount="indefinite"/><path d="M0,150 L26,150 L21,168 L5,168 Z" fill="#46545f"/><circle cx="13" cy="142" r="3.4" fill="#f5e08c"/></g>
+</g>
+<rect x="0" y="252" width="1200" height="48" fill="#38312a"/>
+<g transform="translate(300,258)"><g><animateTransform attributeName="transform" type="rotate" values="-7; 7; -7" dur="6s" repeatCount="indefinite"/><rect x="-4" y="0" width="8" height="16" fill="#241f1a"/><ellipse cx="0" cy="26" rx="13" ry="15" fill="#f2f0e9" opacity="0.25"/><path d="M-4,18 Q0,8 4,18 L3,32 Q0,36 -3,32 Z" fill="#f7cd6e"/></g></g>
+<g transform="translate(880,254)"><g><animateTransform attributeName="transform" type="rotate" values="-9; 9; 9; -9" keyTimes="0;0.42;0.58;1" dur="7s" repeatCount="indefinite"/><rect x="-3" y="0" width="6" height="10" fill="#6b5322"/><path d="M-13,26 L13,26 L8,12 L-8,12 Z" fill="#c49e3e"/><ellipse cx="0" cy="28" rx="15" ry="4" fill="#d8b04c"/></g></g>
+<g fill="#f2f0e9" opacity="0"><circle cx="480" cy="262" r="2.6"/><circle cx="520" cy="256" r="2"/><circle cx="450" cy="252" r="1.8"/><animate attributeName="opacity" values="0;0.9;0;0" keyTimes="0;0.06;0.14;1" dur="17s" repeatCount="indefinite"/></g>
+</svg>

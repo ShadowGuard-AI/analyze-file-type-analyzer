@@ -1,4 +1,11 @@
-![Banner](banner.png)
+![Harbour mouth before the run: foredeck with a coiled rope, a lit lantern, a brass bell and a tied chart roll in front, open slate channel water and diminishing lit buoys behind, no text](intro-banner.png)
+
+# analyze-file-type-analyzer
+
+![Pilot boat at dawn looking aft over its boiling wake toward a distant inbound ship, the project name painted in chalk on the slate transom board](banner.png)
+
+![The run in three bands: the horizon brightens and a distant hull rides the swell, buoys pass and dip through the channel, and the foredeck lantern sways while the bell swings and pauses](scene.svg)
+
 
 # analyze-file-type-analyzer
 Determines the file type of a given file from its magic bytes and reports its entropy, to help detect files whose extension does not match their contents.
@@ -29,3 +36,5 @@ python3 main.py FILE_PATH [-v] [-o OUTPUT]
 
 ## License
 MIT License, see LICENSE.
+
+> Pilot note: the CSV report is written on every successful run whether or not -o is supplied, because -o carries the default file_analysis_report.csv, and no live run backs the parameter list on this page, which was taken from the argument parser in main.py. Both facts stand here in the open, where a careful reader will find them.
