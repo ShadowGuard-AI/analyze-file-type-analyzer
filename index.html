@@ -3,83 +3,79 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>analyze-file-type-analyzer: Harbor Pilot's Dawn Run</title>
-<meta name="description" content="analyze-file-type-analyzer determines the file type of a given file from its magic bytes and reports its entropy, to help detect files whose extension does not match their contents.">
+<title>analyze-file-type-analyzer: The Nesting Bench</title>
 <style>
-@font-face{font-family:'Average Sans';src:url('fonts/AverageSans.ttf') format('truetype');}
-@font-face{font-family:'Cabin';src:url('fonts/Cabin.ttf') format('truetype');}
-:root{--slate:#33424f;--chalk:#f2f0e9;--glass:#7fb69a;--orange:#e06a1f}
-*{box-sizing:border-box}body{margin:0;background:var(--slate);color:#eef0e8;font-family:'Cabin',sans-serif;line-height:1.65}
-h1,h2{font-family:'Average Sans',sans-serif}
-.hero{padding:2rem 6vw 0;max-width:1080px;margin:0 auto}.hero img.banner{width:100%}.logo{width:170px}
-main{padding:0 6vw 3rem;max-width:1080px;margin:0 auto}
-nav{display:flex;gap:.7rem;flex-wrap:wrap;margin:1rem 0}
-.transom{display:inline-block;background:#2a3742;color:var(--chalk);font-family:'Average Sans',sans-serif;text-decoration:none;padding:.7rem 1.3rem;border:2px solid var(--chalk);border-radius:0}
-.transom:hover{color:#fff;box-shadow:inset 0 -6px 0 rgba(242,240,233,.55)}
-.transom:active{transform:translateY(2px);box-shadow:inset 0 -10px 0 rgba(242,240,233,.7)}
-.transom:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
-.deckbox{background:var(--slate);border:3px solid #22303a;border-radius:6px;padding:0;margin:1.6rem 0}
-.deckbox h2{background:var(--chalk);color:var(--slate);margin:0;padding:.6rem 1.4rem;border-radius:3px 3px 0 0}
-.deckbox .face{background:var(--chalk);color:#22303a;margin:1rem 1.4rem 1.4rem;padding:1rem 1.3rem}
-pre{background:#22303a;color:#eef0e8;padding:1rem;overflow-x:auto}
-a{color:var(--glass)}a:before{content:'';display:inline-block;width:9px;height:13px;border-radius:40% 40% 50% 50%;background:var(--orange);margin-right:.45em;vertical-align:-2px}
-a:hover:before{background:#f5c04a;box-shadow:0 0 0 4px rgba(245,192,74,.25)}
-.transom:before,nav a:before{content:none}
-.wake{height:14px;margin:2rem 0;background:radial-gradient(circle at 4px 7px,var(--chalk) 2.6px,transparent 3px),radial-gradient(circle at 26px 5px,var(--glass) 2px,transparent 2.6px),radial-gradient(circle at 60px 9px,var(--chalk) 1.8px,transparent 2.4px),radial-gradient(circle at 120px 6px,var(--chalk) 1.3px,transparent 1.9px);background-size:340px 14px}
-footer{padding:1rem 6vw 2.4rem;max-width:1080px;margin:0 auto}
+@font-face { font-family: 'Prosto One'; src: url('fonts/ProstoOne-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'PT Sans'; src: url('fonts/PTSans-400.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'PT Sans'; src: url('fonts/PTSans-700.woff2') format('woff2'); font-weight: 700; }
+:root { --birch: #e8dcc0; --lacquer: #faf7ef; --teal: #177e7a; --rose: #b23a2e; --ink: #2b2620; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'PT Sans', sans-serif; background: var(--lacquer); color: var(--ink); line-height: 1.65; }
+header.top { display: flex; justify-content: space-between; align-items: center; padding: 16px 28px; background: var(--teal); color: #fff; border-bottom: 5px solid var(--birch); }
+.wordmark { font-weight: 700; letter-spacing: .05em; }
+.rose-note { color: #f3c1bb; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
+.hero { text-align: center; padding: 50px 22px 8px; }
+.hero img.logo { width: 170px; height: auto; border: 5px solid var(--teal); border-radius: 6px; }
+h1 { font-family: 'Prosto One', sans-serif; font-weight: 400; font-size: 2.4rem; margin: 18px 0 6px; color: var(--teal); }
+h2 { font-family: 'Prosto One', sans-serif; font-weight: 400; color: var(--teal); border-bottom: 3px solid var(--birch); padding-bottom: 5px; margin-top: 38px; }
+.tag { max-width: 43rem; margin: 0 auto; }
+.buttons { margin: 22px 0 6px; }
+.buttons a { display: inline-block; margin: 4px; padding: 11px 22px; background: var(--rose); color: #fff; font-weight: 700; text-decoration: none; border-radius: 4px; }
+.buttons a.alt { background: transparent; color: var(--teal); border: 2px solid var(--teal); }
+figure.wide { max-width: 1020px; margin: 24px auto; padding: 0 18px; }
+figure.wide img { width: 100%; height: auto; display: block; border: 1px solid var(--birch); }
+figcaption { color: #6f675a; font-size: .9rem; padding-top: 8px; text-align: center; }
+.strip { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding: 20px 18px; }
+.strip div { background: #fff; border: 1px solid var(--birch); border-top: 4px solid var(--teal); padding: 13px 18px; min-width: 180px; text-align: center; }
+.strip b { display: block; font-family: 'Prosto One', sans-serif; font-weight: 400; color: var(--rose); font-size: 1.05rem; }
+main { max-width: 880px; margin: 0 auto; padding: 8px 22px 30px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid var(--birch); padding: 8px 12px; text-align: left; vertical-align: top; }
+th { background: var(--teal); color: #fff; }
+code { background: #ece1c6; padding: 1px 6px; border-radius: 3px; }
+pre { background: var(--teal); color: #fff; padding: 14px 16px; overflow-x: auto; border-radius: 4px; }
+pre code { background: transparent; color: inherit; padding: 0; }
+.hold { border-left: 5px solid var(--rose); background: #f6e8d9; padding: 13px 18px; }
+footer { text-align: center; padding: 24px 18px 32px; color: #6f675a; font-size: .9rem; border-top: 5px solid var(--birch); margin-top: 28px; }
 </style>
 </head>
 <body>
-<header class="hero">
-<img class="logo" src="assets/logo.png" alt="Wake of a pilot boat at the moment it turns, seen from above: a white V opening downward on dark water with one orange dash at its apex">
-<img class="banner" src="assets/banner.png" alt="Pilot boat at dawn looking aft over its wake toward an inbound ship, the project name painted on the transom board">
-<h1>analyze-file-type-analyzer</h1>
-<p>A pilot boat log kept for one run. The order of the page is the order of the run: meet the ship, read what it really is, write it down.</p>
-<nav>
-<a class="transom" href="#errand">The errand</a>
-<a class="transom" href="#boarding">Boarding</a>
-<a class="transom" href="#instruments">Instruments</a>
-<a class="transom" href="#verified">Verified behaviour</a>
-</nav>
-</header>
+<header class="top"><span class="wordmark">analyze-file-type-analyzer</span><span class="rose-note">One painted rose</span></header>
+<section class="hero">
+<img class="logo" src="assets/logo.png" alt="White lacquered nesting doll open at its waist on a pale birch bench, its top half lifted to reveal a smaller teal doll inside, both figures painted with faces and a red rose on the apron, a second whole doll standing beside it">
+<h1>The Nesting Bench</h1>
+<p class="tag">Determines the file type of a given file from its magic bytes and reports its entropy, to help detect files whose extension does not match their contents. The shell says one thing; the figure inside is the truth of the file.</p>
+<p class="buttons"><a href="https://github.com/ShadowGuard-AI/analyze-file-type-analyzer">View on GitHub</a> <a class="alt" href="https://github.com/ShadowGuard-AI/analyze-file-type-analyzer#readme">Read the README</a></p>
+</section>
+<figure class="wide"><img src="assets/intro-banner.png" alt="Hands lifting the white top half of the largest nesting doll shell to reveal the teal figure inside, the opened row of smaller teal dolls waiting behind on the birch workbench"><figcaption>Hands lifting the largest white shell to reveal the teal figure inside.</figcaption></figure>
+<div class="strip">
+<div><b>Magic bytes</b>name the true type</div>
+<div><b>Entropy</b>reported with it</div>
+<div><b>CSV</b>on every successful run</div>
+<div><b>MIT</b>licence, see LICENSE</div>
+</div>
 <main>
-<section class="deckbox" id="errand"><h2>Opening entry: the errand itself</h2>
-<div class="face">
-<p>analyze-file-type-analyzer determines the file type of a given file from its magic bytes and reports its entropy, to help detect files whose extension does not match their contents.</p>
-<p>That sentence is the whole errand. The extension mismatch case is the reason the run exists at all: a file claiming one identity on its name board while its header declares another.</p>
-</div>
-</section>
-<div class="wake"></div>
-<section class="deckbox" id="boarding"><h2>Second entry: boarding and starting</h2>
-<div class="face">
-<pre>git clone https://github.com/ShadowGuard-AI/analyze-file-type-analyzer
-cd analyze-file-type-analyzer
-pip install -r requirements.txt
-python3 main.py FILE_PATH [-v] [-o OUTPUT]</pre>
-<p>This repository, unlike many around it, names its clone account correctly, so a visitor following these lines lands in the right harbour on the first attempt.</p>
-</div>
-</section>
-<div class="wake"></div>
-<section class="deckbox" id="instruments"><h2>Third entry: the instruments, logged one per line</h2>
-<div class="face">
-<p><code>FILE_PATH</code> is the path to the file to analyze and is required by position.</p>
-<p><code>-h</code> shows the help message and exits.</p>
-<p><code>-v</code>, long form <code>--verbose</code>, enables verbose logging.</p>
-<p><code>-o</code>, long form <code>--output</code>, sets the output file for the report in CSV format, with a stated default of <code>file_analysis_report.csv</code>.</p>
-<p>No line here claims a behaviour the README does not state.</p>
-</div>
-</section>
-<div class="wake"></div>
-<section class="deckbox" id="verified"><h2>Fourth entry: verified behaviour, headed as the README heads it</h2>
-<div class="face">
-<p>A missing input file exits 1. The report CSV carries the file path, the file size, the detected file type, and the entropy.</p>
-<p>The output file is not optional in practice: since <code>-o</code> carries a default, every successful run writes a CSV in the working directory unless <code>-o</code> names another file, and nothing is printed instead.</p>
-<p>Limitation, in full view and not in small print: a live run was not possible in the documenting environment because the <code>magic</code> package is not installed there and installs were not permitted in that wave. The parameter list was taken from the argument parser in <code>main.py</code>, and the file compiles cleanly.</p>
-<p>Licence closes the log: MIT License, see LICENSE. This is the only entry in this batch of three with a named licence at all.</p>
-<p><a href="https://github.com/ShadowGuard-AI/analyze-file-type-analyzer">The repository on GitHub</a></p>
-</div>
-</section>
+<h2>Usage</h2>
+<pre><code>python3 main.py FILE_PATH [-v] [-o OUTPUT]</code></pre>
+<p>Requirements: <code>python-magic&gt;=0.4.27</code> and <code>pandas&gt;=2.2.0</code>.</p>
+<h2>Parameters</h2>
+<table>
+<tr><th>Parameter</th><th>What the README says</th></tr>
+<tr><td><code>FILE_PATH</code></td><td>Path to the file to analyze.</td></tr>
+<tr><td><code>-h</code></td><td>Show help message and exit.</td></tr>
+<tr><td><code>-v</code>, <code>--verbose</code></td><td>Enable verbose logging.</td></tr>
+<tr><td><code>-o</code>, <code>--output</code></td><td>Output file for the report in CSV format. Default: <code>file_analysis_report.csv</code>.</td></tr>
+</table>
+<h2>Verified behavior</h2>
+<ul>
+<li>A missing input file exits 1.</li>
+<li>The report CSV carries the file path, file size, detected file type, and entropy.</li>
+<li>The output file is not optional in practice: because <code>-o</code> has a default, every successful run writes a CSV in the working directory unless <code>-o</code> names another file, and nothing is printed instead.</li>
+</ul>
+<figure class="wide" style="padding:0;margin:18px 0;"><img src="assets/banner.png" alt="Birch workbench with a descending row of opened nesting dolls, every outer shell plain white lacquer and every revealed inner figure a different teal shade, the smallest doll still whole at the end, brushes and paint pots at the frame edge"></figure>
+<h2>Stated limits</h2>
+<div class="hold"><p>The CSV report is written on every successful run whether or not <code>-o</code> is supplied, because <code>-o</code> carries the default <code>file_analysis_report.csv</code>. Live run not possible in the documenting environment: the <code>magic</code> package is not installed there and installs are not permitted in that wave. The parameter list above is taken from the argument parser in <code>main.py</code>, and the file compiles cleanly.</p></div>
 </main>
-<footer><p>Theme: a harbor pilot's dawn run. Type: Average Sans for headings, Cabin for reading, both SIL Open Font License 1.1. Lettering reference Playful Christmas was reference only and is not embedded; lettering follows the harbour's own hand of painted transom boards and harbour notices.</p></footer>
+<footer>analyze-file-type-analyzer, opened shell by shell. Fonts: Prosto One and PT Sans, self-hosted under the SIL Open Font License.</footer>
 </body>
 </html>
