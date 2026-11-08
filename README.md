@@ -1,11 +1,12 @@
-![Harbour mouth before the run: foredeck with a coiled rope, a lit lantern, a brass bell and a tied chart roll in front, open slate channel water and diminishing lit buoys behind, no text](intro-banner.png)
+![Hands lifting the white top half of the largest nesting doll shell to reveal the teal figure inside, the opened row of smaller teal dolls waiting behind on the birch workbench](intro-banner.png)
 
 # analyze-file-type-analyzer
 
-![Pilot boat at dawn looking aft over its boiling wake toward a distant inbound ship, the project name painted in chalk on the slate transom board](banner.png)
+![Birch workbench with a descending row of opened nesting dolls, every outer shell plain white lacquer and every revealed inner figure a different teal shade, the smallest doll still whole at the end, brushes and paint pots at the frame edge](banner.png)
+
+<p align="center"><img src="logo.png" alt="White lacquered nesting doll open at its waist on a pale birch bench, its top half lifted to reveal a smaller teal doll inside, both figures painted with faces and a red rose on the apron, a second whole doll standing beside it" width="180"></p>
 
 ![The run in three bands: the horizon brightens and a distant hull rides the swell, buoys pass and dip through the channel, and the foredeck lantern sways while the bell swings and pauses](scene.svg)
-
 
 # analyze-file-type-analyzer
 Determines the file type of a given file from its magic bytes and reports its entropy, to help detect files whose extension does not match their contents.
